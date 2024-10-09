@@ -81,6 +81,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
     implementation (libs.ui)
     implementation (libs.androidx.material)
+    implementation(libs.coil.compose)
 
     // Testing
     testImplementation (libs.mockk)

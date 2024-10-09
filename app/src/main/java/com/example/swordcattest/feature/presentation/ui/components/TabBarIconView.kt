@@ -1,10 +1,9 @@
-package com.example.swordcattest.feature.presentation.ui
+package com.example.swordcattest.feature.presentation.ui.components
 
 import androidx.compose.material.BadgedBox
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.swordcattest.feature.presentation.ui.TabBarBadgeView
 
 @Composable
 fun TabBarIconView(

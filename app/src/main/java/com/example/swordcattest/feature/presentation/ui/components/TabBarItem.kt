@@ -1,4 +1,4 @@
-package com.example.swordcattest.feature.presentation.ui
+package com.example.swordcattest.feature.presentation.ui.components
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
