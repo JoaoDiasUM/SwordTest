@@ -50,14 +50,32 @@ class CatViewModel @Inject constructor(
         }
     }
         .onEach { _isSearching.update { false } }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), _cats.value)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(2000), _cats.value)
 
     init {
-        getCatsList()
+        if(cats.value.isEmpty()) {
+            getCatsList()
+        }
     }
 
     fun onSearchTextChange(text: String) {
         _searchText.value = text
+    }
+
+    fun onFavoritesClick(updatedCat: CatItem) {
+        val updatedList = _cats.value.map { cat ->
+            if (cat.id == updatedCat.id) {
+                updatedCat.favourite = !updatedCat.favourite
+                updatedCat
+            } else {
+                cat
+            }
+        }
+        _cats.value = updatedList
+    }
+
+    fun getCatById(id: String): CatItem? {
+        return _cats.value.find { it.id == id }
     }
 
     private fun getCatsList() {

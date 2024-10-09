@@ -11,21 +11,23 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.swordcattest.R
+import com.example.swordcattest.feature.presentation.catlist.CatDetailsScreen
+import com.example.swordcattest.feature.presentation.catlist.CatListFavoritesScreen
 import com.example.swordcattest.feature.presentation.catlist.CatListScreen
+import com.example.swordcattest.feature.presentation.catlist.CatViewModel
 import com.example.swordcattest.feature.presentation.ui.components.TabBarItem
 import com.example.swordcattest.feature.presentation.ui.components.TabView
 import com.example.swordcattest.feature.presentation.ui.theme.SwordProjectTheme
@@ -33,7 +35,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,17 +43,21 @@ class MainActivity : ComponentActivity() {
             val catListTab = TabBarItem(
                 title = getString(R.string.bottom_bar_cat_title),
                 selectedIcon = Icons.Filled.Home,
-                unselectedIcon = Icons.Outlined.Home
+                unselectedIcon = Icons.Outlined.Home,
+                route = Screen.CatListScreen.route,
             )
             val catListFavourites = TabBarItem(
                 title = getString(R.string.bottom_bar_favorites_title),
                 selectedIcon = Icons.Filled.Notifications,
                 unselectedIcon = Icons.Outlined.Notifications,
+                route = Screen.CatFavouritesListScreen.route,
             )
 
             val tabBarItems = listOf(catListTab, catListFavourites)
 
             val navController = rememberNavController()
+
+            val viewModel: CatViewModel = hiltViewModel()
 
             SwordProjectTheme {
                 Surface(
@@ -61,12 +66,26 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold(
                         bottomBar = { TabView(tabBarItems, navController) }) {
-                        NavHost(navController = navController, startDestination = catListTab.title) {
-                            composable(catListTab.title) {
-                                CatListScreen()
+                        NavHost(navController = navController, startDestination = Screen.CatListScreen.route) {
+                            composable(
+                                route = Screen.CatListScreen.route
+                            ) {
+                                CatListScreen(navController,viewModel)
                             }
-                            composable(catListFavourites.title) {
-                                Text(catListFavourites.title)
+                            composable(
+                                route = Screen.CatFavouritesListScreen.route
+                            ) {
+                                CatListFavoritesScreen(navController,viewModel)
+                            }
+                            composable(
+                                route = Screen.CatDetailsScreen.route,
+                                arguments = listOf(navArgument("catId") {
+                                    defaultValue = ""
+                                })
+                            ) {backStackEntry ->
+                                backStackEntry.arguments?.getString("catId")?.let {
+                                    CatDetailsScreen(catId = it, viewModel)
+                                }
                             }
                         }
                     }

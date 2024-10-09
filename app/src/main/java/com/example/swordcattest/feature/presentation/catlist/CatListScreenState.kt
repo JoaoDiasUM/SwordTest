@@ -6,5 +6,5 @@ data class CatListScreenState(
     val catList: List<CatItem>? = null,
     val favoriteCatList: List<CatItem>? = null,
     val error: String = "",
-    val isLoading: Boolean = false
+    val isLoading: Boolean? = false,
 )

@@ -22,7 +22,7 @@ fun TabView(tabBarItems: List<TabBarItem>, navController: NavController) {
                 selected = selectedTabIndex == index,
                 onClick = {
                     selectedTabIndex = index
-                    navController.navigate(tabBarItem.title)
+                    navController.navigate(tabBarItem.route)
                 },
                 icon = {
                     TabBarIconView(

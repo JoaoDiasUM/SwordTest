@@ -16,10 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -27,17 +23,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.swordcattest.R
-import com.example.swordcattest.feature.presentation.Screen
 import com.example.swordcattest.feature.presentation.ui.components.CatListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CatListScreen(
+fun CatListFavoritesScreen(
     navController: NavController,
     viewModel: CatViewModel
 ) {
-
-    val state = viewModel.state.collectAsStateWithLifecycle()
 
     val searchText = viewModel.searchText.collectAsStateWithLifecycle()
 
@@ -80,13 +73,15 @@ fun CatListScreen(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     userScrollEnabled = true
                 ) {
-                    cats.value.forEach { cat ->
+                    cats.value.filter {
+                        it.favourite
+                    }.forEach {
                         item {
                             CatListItem(
-                                cat = cat,
-                                false,
-                                onFavoritesClick = { viewModel.onFavoritesClick(cat) },
-                                onImageClick = { navController.navigate("cat_details_list_screen/${cat.id}") })
+                                cat = it,
+                                true,
+                                onFavoritesClick = { viewModel.onFavoritesClick(it) },
+                                onImageClick = { viewModel.onFavoritesClick(it) })
                         }
                     }
                 }
