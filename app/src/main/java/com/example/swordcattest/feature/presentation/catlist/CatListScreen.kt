@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -80,14 +81,16 @@ fun CatListScreen(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     userScrollEnabled = true
                 ) {
-                    cats.value.forEach { cat ->
-                        item {
-                            CatListItem(
-                                cat = cat,
-                                false,
-                                onFavoritesClick = { viewModel.onFavoritesClick(cat) },
-                                onImageClick = { navController.navigate("cat_details_list_screen/${cat.id}") })
-                        }
+                    items(
+                        items = cats.value,
+                        key = { cat -> cat.id }
+                    ) { cat ->
+                        CatListItem(
+                            cat = cat,
+                            false,
+                            onFavoritesClick = { viewModel.onFavoritesClick(cat) },
+                            onImageClick = { navController.navigate("cat_details_list_screen/${cat.id}") }
+                        )
                     }
                 }
             }

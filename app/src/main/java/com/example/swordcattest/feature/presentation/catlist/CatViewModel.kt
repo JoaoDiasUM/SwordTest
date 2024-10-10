@@ -65,7 +65,6 @@ class CatViewModel @Inject constructor(
     fun onFavoritesClick(updatedCat: CatItem) {
         val updatedList = _cats.value.map { cat ->
             if (cat.id == updatedCat.id) {
-                updatedCat.favourite = !updatedCat.favourite
                 updatedCat
             } else {
                 cat

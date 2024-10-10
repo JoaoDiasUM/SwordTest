@@ -1,6 +1,5 @@
 package com.example.swordcattest.feature.presentation.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -9,11 +8,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +36,7 @@ fun CatListItem(
     cat: CatItem,
     shouldShowLifespan: Boolean,
     onImageClick: () -> Unit,
-    onFavoritesClick: () -> Unit,
+    onFavoritesClick: (cat: CatItem) -> Unit,
     ) {
     Box(
         modifier = Modifier
@@ -64,36 +63,36 @@ fun CatListItem(
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                        .padding(10.dp),
-                    text = cat.breeds.first().name,
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(10.dp)
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .weight(0.8f),
+                        text = cat.breeds.first().name,
+                        style = TextStyle(
+                            fontSize = 24.sp,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                )
 
-                val favoriteImage = if (cat.favourite) {
-                    R.drawable.baseline_favorite_24
-                } else {
-                    R.drawable.baseline_favorite_border_24
+                    var checked by remember { mutableStateOf(cat.favourite) }
+
+                    Checkbox(
+                        modifier = Modifier
+                            .padding(2.dp)
+                            .weight(0.2f),
+                        checked = checked,
+                        onCheckedChange = {
+                            checked = it
+                            cat.favourite = it
+                            onFavoritesClick(cat)
+                        }
+                    )
                 }
-
-                Image(
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .align(Alignment.CenterHorizontally)
-                        .size(30.dp)
-                        .clickable {
-                            onFavoritesClick()
-                        },
-                    painter = painterResource(favoriteImage),
-                    contentDescription = stringResource(id = R.string.app_name)
-                )
 
                 if(shouldShowLifespan) {
                     val filteredLifespans = cat.breeds.mapNotNull { breed ->
@@ -105,12 +104,10 @@ fun CatListItem(
 
                     Text(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.CenterHorizontally)
-                            .padding(10.dp),
+                            .align(Alignment.CenterHorizontally),
                         text = "Average Lifespan: ${filteredLifespans.average().toInt()}",
                         style = TextStyle(
-                            fontSize = 20.sp,
+                            fontSize = 18.sp,
                             color = Color.White,
                             fontWeight = FontWeight.Bold
                         )
