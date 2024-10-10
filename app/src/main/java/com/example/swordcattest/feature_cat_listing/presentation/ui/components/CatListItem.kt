@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -105,7 +106,9 @@ fun CatListItem(
                     Text(
                         modifier = Modifier
                             .align(Alignment.CenterHorizontally),
-                        text = "Average Lifespan: ${filteredLifespans.average().toInt()}",
+                        text = stringResource(id = R.string.catAverageLifespan) + "${
+                            filteredLifespans.average().toInt()
+                        }",
                         style = TextStyle(
                             fontSize = 18.sp,
                             color = Color.White,

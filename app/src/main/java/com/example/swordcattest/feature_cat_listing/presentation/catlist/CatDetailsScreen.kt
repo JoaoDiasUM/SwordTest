@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,7 +40,7 @@ fun CatDetailsScreen(catId: String, viewModel: CatViewModel) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp,50.dp,20.dp,20.dp)
+                .padding(20.dp, 50.dp, 20.dp, 20.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(10.dp),
 
@@ -52,7 +53,7 @@ fun CatDetailsScreen(catId: String, viewModel: CatViewModel) {
             Text(
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally),
-                text = "isfavorite",
+                text = stringResource(id = R.string.isFavourite),
                 style = TextStyle(
                     fontSize = 20.sp,
                     color = Color.Black,
@@ -89,27 +90,28 @@ fun CatDetailsScreen(catId: String, viewModel: CatViewModel) {
             catItem?.breeds?.first()?.name?.let {
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = "Name: $it"
+                    text = stringResource(id = R.string.catName) + " $it"
                 )
             }
 
             catItem?.breeds?.first()?.origin?.let {
                 Text(
-                    modifier = Modifier.padding(8.dp), text = "Origin: $it"
+                    modifier = Modifier.padding(8.dp),
+                    text = stringResource(id = R.string.catOrigin) + " $it"
                 )
             }
 
             catItem?.breeds?.first()?.temperament?.let {
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = "Temperament: $it"
+                    text = stringResource(id = R.string.catTemperament) + " $it"
                 )
             }
 
             catItem?.breeds?.first()?.description?.let {
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = "Description: $it"
+                    text = stringResource(id = R.string.catDescription) + " $it"
                 )
             }
         }

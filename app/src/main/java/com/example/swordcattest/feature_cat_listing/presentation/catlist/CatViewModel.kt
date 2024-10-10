@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CatViewModel @Inject constructor(
+open class CatViewModel @Inject constructor(
     private val getCats: GetCats,
     private val databaseRepository: DatabaseRepository,
 ) : ViewModel() {
@@ -92,11 +92,13 @@ class CatViewModel @Inject constructor(
                     is Resource.Error ->
                         it.copy(
                             error = result.message ?: "An unexpected error occurred",
-                            isLoading = false
+                            isLoading = false,
+                            shouldShowErrorDialog = true
                         )
-
                     is Resource.Loading -> it.copy(isLoading = true)
-                    is Resource.Success -> it.copy(isLoading = false)
+                    is Resource.Success -> it.copy(
+                        isLoading = false,
+                    )
                 }
             }
             _cats.update {

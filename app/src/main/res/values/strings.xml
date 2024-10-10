@@ -9,4 +9,12 @@
     <string name="bottom_bar_cat_title">Cats</string>
     <string name="bottom_bar_favorites_title">Favourites</string>
     <string name="error">An unexpected error occurred</string>
+    <string name="error_close">Close</string>
+    <string name="search">Search</string>
+    <string name="isFavourite">isFavourite</string>
+    <string name="catName">Name:</string>
+    <string name="catOrigin">Origin: </string>
+    <string name="catTemperament">Temperament: </string>
+    <string name="catDescription">Description: </string>
+    <string name="catAverageLifespan">Average Lifespan: </string>
 </resources>

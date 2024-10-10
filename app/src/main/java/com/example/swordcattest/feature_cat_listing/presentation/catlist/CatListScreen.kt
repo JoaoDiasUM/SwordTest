@@ -17,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.swordcattest.R
+import com.example.swordcattest.feature_cat_listing.presentation.ui.components.CatAlertDialog
 import com.example.swordcattest.feature_cat_listing.presentation.ui.components.CatListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,6 +35,9 @@ fun CatListScreen(
     navController: NavController,
     viewModel: CatViewModel
 ) {
+
+    val state = viewModel.state.collectAsStateWithLifecycle()
+
     val searchText = viewModel.searchText.collectAsStateWithLifecycle()
 
     val cats = viewModel.cats.collectAsStateWithLifecycle()
@@ -56,7 +62,7 @@ fun CatListScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
-                placeholder = { Text(text = "Search") },
+                placeholder = { Text(text = stringResource(id = R.string.search)) },
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -86,6 +92,11 @@ fun CatListScreen(
                     }
                 }
             }
+
+            CatAlertDialog(
+                shouldShowDialog = state.value.shouldShowErrorDialog,
+                errorMessage = state.value.error
+            )
         }
     }
 }

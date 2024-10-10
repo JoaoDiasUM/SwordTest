@@ -56,7 +56,7 @@ fun CatListFavoritesScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
-                placeholder = { Text(text = "Search") },
+                placeholder = { Text(text = stringResource(id = R.string.search)) },
             )
 
             Spacer(modifier = Modifier.height(16.dp))
