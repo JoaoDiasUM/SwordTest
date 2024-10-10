@@ -1,7 +1,7 @@
 package com.example.swordcattest.di
 
-import com.example.swordcattest.feature.data.repository.CatRepositoryImpl
-import com.example.swordcattest.feature.domain.repository.CatRepository
+import com.example.swordcattest.feature_cat_listing.data.repository.CatRepositoryImpl
+import com.example.swordcattest.feature_cat_listing.domain.repository.CatRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

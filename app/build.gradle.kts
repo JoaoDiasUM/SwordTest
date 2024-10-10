@@ -83,6 +83,11 @@ dependencies {
     implementation (libs.androidx.material)
     implementation(libs.coil.compose)
 
+    // Room
+    implementation(libs.androidx.room.ktx)
+    //noinspection KaptUsageInsteadOfKsp
+    kapt(libs.androidx.room.compiler)
+
     // Testing
     testImplementation (libs.mockk)
     testImplementation(libs.junit)

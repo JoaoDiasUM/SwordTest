@@ -1,6 +1,6 @@
 package com.example.swordcattest.di
 
-import com.example.swordcattest.feature.data.remote.CatApiService
+import com.example.swordcattest.feature_cat_listing.data.remote.CatApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
