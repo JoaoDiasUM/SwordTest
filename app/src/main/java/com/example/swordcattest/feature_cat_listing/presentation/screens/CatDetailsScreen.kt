@@ -1,4 +1,4 @@
-package com.example.swordcattest.feature_cat_listing.presentation.catlist
+package com.example.swordcattest.feature_cat_listing.presentation.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,17 +30,18 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.swordcattest.R
+import com.example.swordcattest.feature_cat_listing.presentation.screens.components.CatDetails
 
 @Composable
 fun CatDetailsScreen(catId: String, viewModel: CatViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .padding(20.dp, 50.dp, 20.dp, 100.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp, 50.dp, 20.dp, 20.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(10.dp),
 
@@ -87,32 +88,11 @@ fun CatDetailsScreen(catId: String, viewModel: CatViewModel) {
                 placeholder = painterResource(R.drawable.ic_launcher_background)
             )
 
-            catItem?.breeds?.first()?.name?.let {
-                Text(
-                    modifier = Modifier.padding(8.dp),
-                    text = stringResource(id = R.string.catName) + " $it"
-                )
-            }
-
-            catItem?.breeds?.first()?.origin?.let {
-                Text(
-                    modifier = Modifier.padding(8.dp),
-                    text = stringResource(id = R.string.catOrigin) + " $it"
-                )
-            }
-
-            catItem?.breeds?.first()?.temperament?.let {
-                Text(
-                    modifier = Modifier.padding(8.dp),
-                    text = stringResource(id = R.string.catTemperament) + " $it"
-                )
-            }
-
-            catItem?.breeds?.first()?.description?.let {
-                Text(
-                    modifier = Modifier.padding(8.dp),
-                    text = stringResource(id = R.string.catDescription) + " $it"
-                )
+            catItem?.breeds?.first()?.let { breed ->
+                CatDetails(R.string.catName, breed.name)
+                CatDetails(R.string.catOrigin, breed.origin)
+                CatDetails(R.string.catTemperament, breed.temperament)
+                CatDetails(R.string.catDescription, breed.description)
             }
         }
     }

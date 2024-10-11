@@ -6,7 +6,7 @@ import com.example.swordcattest.fakes.FakeCat
 import com.example.swordcattest.feature_cat_listing.domain.model.CatItem
 import com.example.swordcattest.feature_cat_listing.domain.repository.DatabaseRepository
 import com.example.swordcattest.feature_cat_listing.domain.usecase.GetCats
-import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatViewModel
+import com.example.swordcattest.feature_cat_listing.presentation.screens.CatViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow

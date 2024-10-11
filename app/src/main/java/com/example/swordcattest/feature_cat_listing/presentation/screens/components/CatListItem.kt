@@ -1,4 +1,4 @@
-package com.example.swordcattest.feature_cat_listing.presentation.ui.components
+package com.example.swordcattest.feature_cat_listing.presentation.screens.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,6 +44,9 @@ fun CatListItem(
             .fillMaxWidth()
             .background(Color.Gray)
             .padding(10.dp)
+            .clickable {
+                onImageClick()
+            }
     ) {
         Row {
             AsyncImage(
@@ -53,10 +56,7 @@ fun CatListItem(
                 contentDescription = "",
                 modifier = Modifier
                     .size(100.dp)
-                    .align(Alignment.CenterVertically)
-                    .clickable {
-                        onImageClick()
-                    },
+                    .align(Alignment.CenterVertically),
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(R.drawable.ic_launcher_background)
             )

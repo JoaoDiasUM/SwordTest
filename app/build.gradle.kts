@@ -97,4 +97,5 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler)
     testImplementation (libs.kotlinx.coroutines.test)
     testImplementation (libs.mockito.kotlin)
+    androidTestImplementation ("io.mockk:mockk:1.12.0")
 }

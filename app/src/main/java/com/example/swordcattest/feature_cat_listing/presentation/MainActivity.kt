@@ -22,10 +22,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.swordcattest.R
 import com.example.swordcattest.common.Constants
-import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatDetailsScreen
-import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatListFavoritesScreen
-import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatListScreen
-import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatViewModel
+import com.example.swordcattest.feature_cat_listing.presentation.screens.CatDetailsScreen
+import com.example.swordcattest.feature_cat_listing.presentation.screens.CatListFavoritesScreen
+import com.example.swordcattest.feature_cat_listing.presentation.screens.CatListScreen
+import com.example.swordcattest.feature_cat_listing.presentation.screens.CatViewModel
 import com.example.swordcattest.feature_cat_listing.presentation.ui.components.TabBarItem
 import com.example.swordcattest.feature_cat_listing.presentation.ui.components.TabView
 import com.example.swordcattest.feature_cat_listing.presentation.ui.theme.SwordProjectTheme

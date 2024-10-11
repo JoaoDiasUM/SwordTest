@@ -1,4 +1,4 @@
-package com.example.swordcattest.feature_cat_listing.presentation.ui.components
+package com.example.swordcattest.feature_cat_listing.presentation.screens.components
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button

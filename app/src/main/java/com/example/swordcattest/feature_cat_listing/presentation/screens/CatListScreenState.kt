@@ -1,4 +1,4 @@
-package com.example.swordcattest.feature_cat_listing.presentation.catlist
+package com.example.swordcattest.feature_cat_listing.presentation.screens
 
 data class CatListScreenState(
     val error: String = "",
