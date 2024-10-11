@@ -7,7 +7,7 @@ import com.example.swordcattest.feature_cat_listing.data.room.dao.CatDao
 import com.example.swordcattest.feature_cat_listing.data.room.database.CatsDatabase
 import com.example.swordcattest.feature_cat_listing.domain.repository.DatabaseRepository
 import com.example.swordcattest.feature_cat_listing.domain.usecase.CatDBUseCases
-import com.example.swordcattest.feature_cat_listing.domain.usecase.GetAllCats
+import com.example.swordcattest.feature_cat_listing.domain.usecase.GetAllCatsDB
 import com.example.swordcattest.feature_cat_listing.domain.usecase.InsertAllCats
 import com.example.swordcattest.feature_cat_listing.domain.usecase.InsertCat
 import dagger.Module
@@ -46,7 +46,7 @@ object DatabaseModule {
     @Singleton
     fun provideChatUseCases(databaseRepository: DatabaseRepository): CatDBUseCases {
         return CatDBUseCases(
-            getAllCats = GetAllCats(databaseRepository),
+            getAllCats = GetAllCatsDB(databaseRepository),
             insertCat = InsertCat(databaseRepository),
             insertAllCats = InsertAllCats(databaseRepository),
         )

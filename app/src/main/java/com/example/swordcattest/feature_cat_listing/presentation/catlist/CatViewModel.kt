@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.jetbrains.annotations.VisibleForTesting
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +29,7 @@ open class CatViewModel @Inject constructor(
     private val databaseRepository: DatabaseRepository,
 ) : ViewModel() {
 
-    // Improve this to only use one state
+    // Improve this to combine all these states
 
     private val _state = MutableStateFlow(CatListScreenState())
     val state: StateFlow<CatListScreenState> = _state
@@ -74,11 +75,12 @@ open class CatViewModel @Inject constructor(
             }
         }
 
-        viewModelScope.launch {
-            saveCatToDB(updatedCat)
+        if (updatedList != _cats.value) {
+            viewModelScope.launch {
+                saveCatToDB(updatedCat)
+                _cats.value = updatedList
+            }
         }
-
-        _cats.value = updatedList
     }
 
     fun getCatById(id: String): CatItem? {
@@ -121,5 +123,9 @@ open class CatViewModel @Inject constructor(
         cats?.let { databaseRepository.insertAllCats(it) }
         val catsFromDB = databaseRepository.getAllCats()
         return catsFromDB
+    }
+    @VisibleForTesting
+    internal fun setCats(cats: List<CatItem>) {
+        _cats.value = cats
     }
 }

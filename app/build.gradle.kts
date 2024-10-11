@@ -93,6 +93,8 @@ dependencies {
     testImplementation (libs.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.turbine)
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.51.1")
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
+    testImplementation (libs.kotlinx.coroutines.test)
+    testImplementation (libs.mockito.kotlin)
 }
