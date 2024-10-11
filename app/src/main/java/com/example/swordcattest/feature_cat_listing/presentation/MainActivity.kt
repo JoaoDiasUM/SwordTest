@@ -14,16 +14,14 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.swordcattest.R
+import com.example.swordcattest.common.Constants
 import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatDetailsScreen
 import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatListFavoritesScreen
 import com.example.swordcattest.feature_cat_listing.presentation.catlist.CatListScreen
@@ -79,11 +77,11 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(
                                 route = Screen.CatDetailsScreen.route,
-                                arguments = listOf(navArgument("catId") {
+                                arguments = listOf(navArgument(Constants.NAV_ARGUMENT_CAT_ID) {
                                     defaultValue = ""
                                 })
                             ) {backStackEntry ->
-                                backStackEntry.arguments?.getString("catId")?.let {
+                                backStackEntry.arguments?.getString(Constants.NAV_ARGUMENT_CAT_ID)?.let {
                                     CatDetailsScreen(catId = it, viewModel)
                                 }
                             }
@@ -92,21 +90,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SwordProjectTheme {
-        Greeting("Android")
     }
 }

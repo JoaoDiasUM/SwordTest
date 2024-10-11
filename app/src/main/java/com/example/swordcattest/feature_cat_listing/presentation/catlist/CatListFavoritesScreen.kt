@@ -38,6 +38,8 @@ fun CatListFavoritesScreen(
 
     val isSearching = viewModel.isSearching.collectAsStateWithLifecycle()
 
+    // Improve to use common base UI components
+
     Scaffold(
         topBar = {
             TopAppBar(

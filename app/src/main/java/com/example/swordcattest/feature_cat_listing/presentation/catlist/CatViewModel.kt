@@ -43,13 +43,13 @@ open class CatViewModel @Inject constructor(
     private val _cats = MutableStateFlow(listOf<CatItem>())
     @OptIn(FlowPreview::class)
     val cats = searchText
-        .debounce(1000L)
+        .debounce(200L)
         .onEach { _isSearching.update { true } }
         .combine(_cats) { text, cats ->
         if (text.isBlank()) {
             cats
         } else {
-            delay(2000L)
+            delay(300L)
             cats.filter {
                 it.doesMatchSearchBreed(text)
             }
@@ -87,7 +87,7 @@ open class CatViewModel @Inject constructor(
         return _cats.value.find { it.id == id }
     }
 
-    private fun getCatsList() {
+    fun getCatsList() {
         getCats.invoke().onEach { result ->
             _state.update {
                 when (result) {
