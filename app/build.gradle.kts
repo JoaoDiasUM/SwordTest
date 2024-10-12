@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.swordcattest"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -97,5 +97,5 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler)
     testImplementation (libs.kotlinx.coroutines.test)
     testImplementation (libs.mockito.kotlin)
-    androidTestImplementation ("io.mockk:mockk:1.12.0")
+    androidTestImplementation (libs.mockk.v1120)
 }

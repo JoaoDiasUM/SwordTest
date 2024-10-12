@@ -2,12 +2,10 @@ package com.example.swordcattest.domain.usecases
 
 import com.example.swordcattest.fakes.FakeCat
 import com.example.swordcattest.fakes.FakeDatabaseRepository
-import com.example.swordcattest.feature_cat_listing.domain.model.Breed
-import com.example.swordcattest.feature_cat_listing.domain.model.CatItem
 import com.example.swordcattest.feature_cat_listing.domain.usecase.GetAllCatsDB
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import kotlinx.coroutines.test.runTest
 
 class GetAllCatsDBUseCaseTest {
 

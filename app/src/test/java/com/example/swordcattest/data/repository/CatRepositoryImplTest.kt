@@ -34,7 +34,7 @@ class CatRepositoryImplTest {
         val response = Response.success(listOf(cat))
 
         coEvery {
-            catApiService.getCats()
+            catApiService.getCats(any(),any(),any(),any(),any(),any(),any())
         }.returns(response)
 
         val result = sut.getCats()
@@ -46,7 +46,7 @@ class CatRepositoryImplTest {
         val mockResponse = Response.error<List<CatItem>>(400, errorResponseBody)
 
         coEvery {
-            catApiService.getCats()
+            catApiService.getCats(any(),any(),any(),any(),any(),any(),any())
         }.returns(mockResponse)
 
         val result = sut.getCats()

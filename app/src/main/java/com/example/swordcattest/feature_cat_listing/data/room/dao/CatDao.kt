@@ -9,10 +9,10 @@ import com.example.swordcattest.feature_cat_listing.domain.model.CatItem
 @Dao
 interface CatDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCat(message: CatItem)
+    suspend fun insertCat(cat: CatItem)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllCats(messages: List<CatItem>)
+    suspend fun insertAllCats(cats: List<CatItem>)
     @Query("SELECT * FROM cats")
     suspend fun getAllCats(): List<CatItem>
 }

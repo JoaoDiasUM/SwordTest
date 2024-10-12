@@ -9,7 +9,15 @@ class CatRepositoryImpl @Inject constructor(
     private val catApiServices: CatApiService
 ): CatRepository {
     override suspend fun getCats(): List<CatItem>? {
-        val response = catApiServices.getCats()
+        val response = catApiServices.getCats(
+            "med",
+            "jpg",
+            "json",
+            true,
+            "RANDOM",
+            0,
+            20
+        )
 
         return if (response.isSuccessful) {
             response.body()

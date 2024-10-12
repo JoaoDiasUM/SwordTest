@@ -1,6 +1,5 @@
 package com.example.swordcattest.database
 
-import androidx.compose.material3.darkColorScheme
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
